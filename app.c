@@ -1,11 +1,18 @@
 #include <stdio.h>
 
+#if defined(_WIN32) && defined(_WIN64)
+    #define clrscr() system("cls");
+#elif defined(__linux__) && defined(__APPLE__)
+    #define clrscr() system("clear");
+#endif
+
 typedef struct Title {char* characters; } Title;
 
 void displayTitle();
 void displayBoard();
 
 int main() {
+	clrscr();
     displayTitle();
     displayBoard();
     return 0;
