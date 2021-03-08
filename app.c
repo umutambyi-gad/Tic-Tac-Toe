@@ -3,9 +3,11 @@
 typedef struct Title {char* characters; } Title;
 
 void displayTitle();
+void displayBoard();
 
 int main() {
     displayTitle();
+    displayBoard();
     return 0;
 }
 
@@ -21,4 +23,12 @@ void displayTitle() {
         {"   |_|  |_|\\___|    |_|\\__,_|\\___|    |_|\\___/ \\___| \n\n\n"}
     };
     for (i = 0; i < sizeof(title) / sizeof(*title); i++) printf("%s", title[i].characters);
+}
+
+void displayBoard() {
+    printf("\t\t    |   |   \n");
+    printf("\t\t--------------\n"); 
+    printf("\t\t    |   |   \n"); 
+    printf("\t\t--------------\n"); 
+    printf("\t\t    |   |   \n\n"); 
 }
