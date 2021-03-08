@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <time.h>
 
 #if defined(_WIN32) && defined(_WIN64)
     #define clrscr() system("cls");
-#elif defined(__linux__) && defined(__APPLE__)
+#else
     #define clrscr() system("clear");
 #endif
 
