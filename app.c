@@ -17,11 +17,13 @@
 typedef struct Title {char* characters; } Title;
 
 void displayStatus(int status);
+void displayInstructions();
 void displayBoard(char board[][3]);
 
 int main() {
 	clrscr();
     displayStatus(START);
+    displayInstructions();
     return 0;
 }
 
@@ -31,6 +33,16 @@ void displayBoard(char board[][3]) {
     printf("\t\t  %c  |  %c  |  %c  \n", board[1][0], board[1][1], board[1][2]);
     printf("\t\t-----------------\n");
     printf("\t\t  %c  |  %c  |  %c  \n\n", board[2][0], board[2][1], board[2][2]);
+}
+
+void displayInstructions() {
+    printf("Pick a number from 1 to 9 to fill the cell in the board as below and play\n\n");
+    printf("\t\t\t  1  |  2  |  3  \n");
+    printf("\t\t\t----------------\n");
+    printf("\t\t\t  4  |  5  |  6  \n");
+    printf("\t\t\t----------------\n");
+    printf("\t\t\t  7  |  8  |  9  \n\n");
+    printf("--------------        -------------------        -----------------\n\n");
 }
 
 void displayStatus(int status) {
