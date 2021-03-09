@@ -17,21 +17,20 @@
 typedef struct Title {char* characters; } Title;
 
 void displayStatus(int status);
-void displayBoard();
+void displayBoard(char board[][3]);
 
 int main() {
 	clrscr();
     displayStatus(START);
-    displayBoard();
     return 0;
 }
 
-void displayBoard() {
-    printf("\t\t    |   |   \n");
-    printf("\t\t--------------\n"); 
-    printf("\t\t    |   |   \n"); 
-    printf("\t\t--------------\n"); 
-    printf("\t\t    |   |   \n\n"); 
+void displayBoard(char board[][3]) {
+    printf("\t\t  %c  |  %c  |  %c  \n", board[0][0], board[0][1], board[0][2]);
+    printf("\t\t-----------------\n");
+    printf("\t\t  %c  |  %c  |  %c  \n", board[1][0], board[1][1], board[1][2]);
+    printf("\t\t-----------------\n");
+    printf("\t\t  %c  |  %c  |  %c  \n\n", board[2][0], board[2][1], board[2][2]);
 }
 
 void displayStatus(int status) {
@@ -81,8 +80,4 @@ void displayStatus(int status) {
 	    };
 	    display(title);
     }
-}
-
-void displayLoss() {
-	
 }
