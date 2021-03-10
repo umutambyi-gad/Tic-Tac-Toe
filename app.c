@@ -23,6 +23,7 @@ bool checkRows(char gameBoard[][3]);
 bool checkCols(char gameBoard[][3]);
 bool checkDiags(char gameBoard[][3]);
 bool gameOver(char gameBoard[][3]);
+int humanMove(char gameBoard[][3]);
 
 int main() {
 	clrscr();
@@ -139,4 +140,31 @@ bool checkDiags(char gameBoard[][3]) {
         gameBoard[1][1] == gameBoard[2][0] && 
         gameBoard[0][2] != ' ') endPlay = true;
     return endPlay;
+}
+
+int humanMove(char gameBoard[][3]) {
+	int choice, row, col;
+	ENTER:
+		printf("Enter number to fill play: ");
+		scanf("%d", &choice);
+
+	if (choice < 1 || choice > 9) {
+		printf("Please enter number in range of 1 and 9 and inclusive\n");
+		goto ENTER;
+	}
+	row = (choice > 3)? 1: 0;
+	row = (choice > 6)? 2: row;
+	printf("%d\t", row);
+
+	// 7 - 4 = 3
+	col = (choice > 3)? choice - 4: choice;
+	col = (col > 3)? col - 4: col;
+	if (choice == 7) col = 0;
+	printf("%d\n", col);
+
+	if (gameBoard[row][col] != ' ') {
+		printf("Cell has been occupied try another number\n");
+		goto ENTER;
+	}
+	return choice - 1;
 }
