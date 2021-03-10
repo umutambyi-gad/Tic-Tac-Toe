@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 #define START 0
 #define LOST -1
@@ -17,7 +18,11 @@ typedef struct Title {char* characters; } Title;
 
 void displayStatus(int status);
 void displayInstructions();
-void displayBoard(char board[][3]);
+void displayBoard(char gameBoard[][3]);
+bool checkRows(char gameBoard[][3]);
+bool checkCols(char gameBoard[][3]);
+bool checkDiags(char gameBoard[][3]);
+bool gameOver(char gameBoard[][3]);
 
 int main() {
 	clrscr();
@@ -26,12 +31,12 @@ int main() {
     return 0;
 }
 
-void displayBoard(char board[][3]) {
-    printf("\t\t  %c  |  %c  |  %c  \n", board[0][0], board[0][1], board[0][2]);
+void displayBoard(char gameBoard[][3]) {
+    printf("\t\t  %c  |  %c  |  %c  \n", gameBoard[0][0], gameBoard[0][1], gameBoard[0][2]);
     printf("\t\t-----------------\n");
-    printf("\t\t  %c  |  %c  |  %c  \n", board[1][0], board[1][1], board[1][2]);
+    printf("\t\t  %c  |  %c  |  %c  \n", gameBoard[1][0], gameBoard[1][1], gameBoard[1][2]);
     printf("\t\t-----------------\n");
-    printf("\t\t  %c  |  %c  |  %c  \n\n", board[2][0], board[2][1], board[2][2]);
+    printf("\t\t  %c  |  %c  |  %c  \n\n", gameBoard[2][0], gameBoard[2][1], gameBoard[2][2]);
 }
 
 void displayInstructions() {
@@ -91,4 +96,16 @@ void displayStatus(int status) {
 	    };
 	    display(title);
     }
+}
+
+
+bool gameOver(char gameBoard[][3]) {
+	int rows, cols;
+	bool endPlay = false;
+	for (rows = 0; rows < 3; rows++) {
+		for (cols = 0; cols < 3; cols++) {
+			if (gameBoard[rows][cols] != ' ') endPlay = true;
+		}
+	}
+	return endPlay;
 }
