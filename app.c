@@ -109,3 +109,13 @@ bool gameOver(char gameBoard[][3]) {
 	}
 	return endPlay;
 }
+
+bool checkRows(char gameBoard[][3]) {
+	int cell;
+	bool endPlay = false;
+	for (cell = 0; cell < 3; cell++) {
+		if (gameBoard[cell][0] == gameBoard[cell][1] && gameBoard[cell][1] == gameBoard[cell][2]
+			&& gameBoard[cell][0] != ' ') endPlay = true;
+	}
+	return endPlay;
+}
