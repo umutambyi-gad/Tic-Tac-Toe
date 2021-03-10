@@ -119,3 +119,13 @@ bool checkRows(char gameBoard[][3]) {
 	}
 	return endPlay;
 }
+
+bool checkCols(char gameBoard[][3]) {
+	int cell;
+	bool endPlay = false;
+	for (cell = 0; cell < 3; cell++) {
+		if (gameBoard[0][cell] == gameBoard[1][cell] && gameBoard[1][cell] == gameBoard[2][cell]
+			&& gameBoard[0][cell] != ' ') endPlay = true;
+	}
+	return endPlay;
+}
