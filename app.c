@@ -24,6 +24,7 @@ bool checkCols(char gameBoard[][3]);
 bool checkDiags(char gameBoard[][3]);
 bool gameOver(char gameBoard[][3]);
 int humanMove(char gameBoard[][3]);
+int computerMove(char gameBoard[][3]);
 
 int main() {
 	clrscr();
@@ -154,16 +155,37 @@ int humanMove(char gameBoard[][3]) {
 	}
 	row = (choice > 3)? 1: 0;
 	row = (choice > 6)? 2: row;
-	printf("%d\t", row);
 
-	// 7 - 4 = 3
 	col = (choice > 3)? choice - 4: choice;
-	col = (col > 3)? col - 4: col;
+	col = (choice > 6)? (col - 4) + 1: col;
 	if (choice == 7) col = 0;
 	printf("%d\n", col);
+	
 
 	if (gameBoard[row][col] != ' ') {
 		printf("Cell has been occupied try another number\n");
+		goto ENTER;
+	}
+	return choice - 1;
+}
+
+int computerMove(char gameBoard[][3]) {
+	srand(time(NULL));
+	
+	int choice, row, col;
+	ENTER:
+		choice = rand() % (9 + 1);
+		choice = (choice == 0)? 1 : choice;
+	
+	row = (choice > 3)? 1: 0;
+	row = (choice > 6)? 2: row;
+
+	col = (choice > 3)? choice - 4: choice;
+	col = (choice > 6)? (col - 4) + 1: col;
+	if (choice == 7) col = 0;
+	printf("%d\n", choice);
+	if (gameBoard[row][col] != ' ') {
+		printf("retrying...\n");
 		goto ENTER;
 	}
 	return choice - 1;
