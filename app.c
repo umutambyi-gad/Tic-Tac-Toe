@@ -112,6 +112,9 @@ bool gameOver(char gameBoard[][3]) {
 		}
 	}
 	if (count == 9) endPlay = true;
+	else if (checkRows(gameBoard) == true) endPlay = true;
+	else if (checkCols(gameBoard) == true) endPlay = true;
+	else if (checkDiags(gameBoard) == true) endPlay = true;
 	return endPlay;
 }
 
