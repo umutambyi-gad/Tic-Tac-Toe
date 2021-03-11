@@ -23,7 +23,7 @@ bool checkRows(char gameBoard[][3]);
 bool checkCols(char gameBoard[][3]);
 bool checkDiags(char gameBoard[][3]);
 bool gameOver(char gameBoard[][3]);
-int humanMove(char gameBoard[][3]);
+void humanMove(char gameBoard[][3]);
 int computerMove(char gameBoard[][3]);
 
 int main() {
@@ -143,7 +143,7 @@ bool checkDiags(char gameBoard[][3]) {
     return endPlay;
 }
 
-int humanMove(char gameBoard[][3]) {
+void humanMove(char gameBoard[][3]) {
 	int choice, row, col;
 	ENTER:
 		printf("Enter number to fill play: ");
@@ -153,20 +153,19 @@ int humanMove(char gameBoard[][3]) {
 		printf("Please enter number in range of 1 and 9 and inclusive\n");
 		goto ENTER;
 	}
-	row = (choice > 3)? 1: 0;
-	row = (choice > 6)? 2: row;
-
-	col = (choice > 3)? choice - 4: choice;
-	col = (choice > 6)? (col - 4) + 1: col;
-	if (choice == 7) col = 0;
-	printf("%d\n", col);
 	
+	choice = choice - 1;
+	row = (choice > 2)? 1: 0;
+	row = (choice > 5)? 2: row;
 
+	col = (choice > 2)? choice - 3: choice;
+	col = (choice > 5)? (col - 3): col;
+	
 	if (gameBoard[row][col] != ' ') {
 		printf("Cell has been occupied try another number\n");
 		goto ENTER;
 	}
-	return choice - 1;
+	gameBoard[row][col] = 'x';
 }
 
 int computerMove(char gameBoard[][3]) {
