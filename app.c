@@ -30,6 +30,7 @@ int main() {
 	clrscr();
     displayStatus(START);
     displayInstructions();
+    play();
     return 0;
 }
 
@@ -102,13 +103,14 @@ void displayStatus(int status) {
 
 
 bool gameOver(char gameBoard[][3]) {
-	int rows, cols;
+	int rows, cols, count = 0;
 	bool endPlay = false;
 	for (rows = 0; rows < 3; rows++) {
 		for (cols = 0; cols < 3; cols++) {
-			if (gameBoard[rows][cols] != ' ') endPlay = true;
+			if (gameBoard[rows][cols] != ' ') count++;
 		}
 	}
+	if (count == 9) endPlay = true;
 	return endPlay;
 }
 
@@ -150,7 +152,7 @@ void humanMove(char gameBoard[][3]) {
 		scanf("%d", &choice);
 
 	if (choice < 1 || choice > 9) {
-		printf("Please enter number in range of 1 and 9 and inclusive\n");
+		printf("\nPlease enter number in range of 1 and 9 and inclusive\n\n");
 		goto ENTER;
 	}
 	
@@ -162,7 +164,7 @@ void humanMove(char gameBoard[][3]) {
 	col = (choice > 5)? (col - 3): col;
 
 	if (gameBoard[row][col] != ' ') {
-		printf("Cell has been occupied try another number\n");
+		printf("\ncell has been occupied try another number\n");
 		goto ENTER;
 	}
 	gameBoard[row][col] = 'x';
