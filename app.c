@@ -8,14 +8,17 @@
 
 #define display(title) ({int i; for (i = 0; i < sizeof(title) / sizeof(*title); i++) printf("%s", title[i].characters);})
 
-#if defined(_WIN32) && defined(_WIN64)
+#if defined(_WIN32) || defined(_WIN64)
     #define clrscr() system("cls");
+	#include <windows.h>
 #else
     #define clrscr() system("clear");
+	#include <unistd.h>
 #endif
 
 typedef struct Title {char* characters; } Title;
 
+void wait(int seconds);
 void displayStatus(int status);
 void displayInstructions();
 void displayBoard(char gameBoard[][3]);
@@ -102,6 +105,13 @@ void displayStatus(int status) {
     }
 }
 
+void wait(int seconds) {
+    #if defined(_WIN32) || defined(_WIN64)
+        Sleep(1000 * seconds);
+    #else
+        sleep(seconds);
+    #endif
+}
 
 bool gameOver(char gameBoard[][3]) {
 	int rows, cols, count = 0;
@@ -206,7 +216,9 @@ void play() {
     do {
     	humanMove(gameBoard);
     	displayBoard(gameBoard);
+    	wait(1);
     	computerMove(gameBoard);
+    	wait(1);
     	displayBoard(gameBoard);
     } while(gameOver(gameBoard) == false);
 }
