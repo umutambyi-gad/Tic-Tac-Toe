@@ -121,7 +121,10 @@ bool gameOver(char gameBoard[][3]) {
 			if (gameBoard[rows][cols] != ' ') count++;
 		}
 	}
-	if (count == 9) endPlay = true;
+	if (count == 9){
+		displayStatus(TIE);
+		endPlay = true;
+	}
 	else if (checkRows(gameBoard) == true) endPlay = true;
 	else if (checkCols(gameBoard) == true) endPlay = true;
 	else if (checkDiags(gameBoard) == true) endPlay = true;
@@ -133,7 +136,14 @@ bool checkRows(char gameBoard[][3]) {
 	bool endPlay = false;
 	for (cell = 0; cell < 3; cell++) {
 		if (gameBoard[cell][0] == gameBoard[cell][1] && gameBoard[cell][1] == gameBoard[cell][2]
-			&& gameBoard[cell][0] != ' ') endPlay = true;
+			&& gameBoard[cell][0] != ' ') {
+			if (gameBoard[cell][0] == 'x') {
+				displayStatus(WIN);
+			} else {
+				displayStatus(LOST);
+			}
+			endPlay = true;
+		}
 	}
 	return endPlay;
 }
@@ -143,7 +153,14 @@ bool checkCols(char gameBoard[][3]) {
 	bool endPlay = false;
 	for (cell = 0; cell < 3; cell++) {
 		if (gameBoard[0][cell] == gameBoard[1][cell] && gameBoard[1][cell] == gameBoard[2][cell]
-			&& gameBoard[0][cell] != ' ') endPlay = true;
+			&& gameBoard[0][cell] != ' ') {
+			if (gameBoard[0][cell] == 'x') {
+				displayStatus(WIN);
+			} else {
+				displayStatus(LOST);
+			}
+			endPlay = true;
+		}
 	}
 	return endPlay;
 }
@@ -152,10 +169,24 @@ bool checkDiags(char gameBoard[][3]) {
 	bool endPlay = false;
 	if (gameBoard[0][0] == gameBoard[1][1] && 
         gameBoard[1][1] == gameBoard[2][2] &&  
-        gameBoard[0][0] != ' ') endPlay = true;
+        gameBoard[0][0] != ' ') {
+		if (gameBoard[0][0] == 'x') {
+			displayStatus(WIN);
+		} else {
+			displayStatus(LOST);
+		}
+		endPlay = true;
+	}
     if (gameBoard[0][2] == gameBoard[1][1] && 
         gameBoard[1][1] == gameBoard[2][0] && 
-        gameBoard[0][2] != ' ') endPlay = true;
+        gameBoard[0][2] != ' ') {
+    	if (gameBoard[0][2] == 'x') {
+			displayStatus(WIN);
+		} else {
+			displayStatus(LOST);
+		}
+		endPlay = true;
+    }
     return endPlay;
 }
 
