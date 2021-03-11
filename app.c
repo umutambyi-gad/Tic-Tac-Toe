@@ -25,6 +25,7 @@ bool checkDiags(char gameBoard[][3]);
 bool gameOver(char gameBoard[][3]);
 void humanMove(char gameBoard[][3]);
 void computerMove(char gameBoard[][3]);
+void play();
 
 int main() {
 	clrscr();
@@ -190,4 +191,19 @@ void computerMove(char gameBoard[][3]) {
 	}
 	printf("The computer has entered: %d\n", choice + 1);
 	gameBoard[row][col] = 'o';
+}
+
+
+void play() {
+	char gameBoard[][3] = {
+		{' ', ' ', ' '},
+		{' ', ' ', ' '},
+		{' ', ' ', ' '}
+	};
+    do {
+    	humanMove(gameBoard);
+    	displayBoard(gameBoard);
+    	computerMove(gameBoard);
+    	displayBoard(gameBoard);
+    } while(gameOver(gameBoard) == false);
 }
