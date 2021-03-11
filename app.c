@@ -34,7 +34,7 @@ int main() {
 }
 
 void displayBoard(char gameBoard[][3]) {
-    printf("\t\t  %c  |  %c  |  %c  \n", gameBoard[0][0], gameBoard[0][1], gameBoard[0][2]);
+    printf("\n\n\t\t  %c  |  %c  |  %c  \n", gameBoard[0][0], gameBoard[0][1], gameBoard[0][2]);
     printf("\t\t-----------------\n");
     printf("\t\t  %c  |  %c  |  %c  \n", gameBoard[1][0], gameBoard[1][1], gameBoard[1][2]);
     printf("\t\t-----------------\n");
@@ -184,8 +184,8 @@ void computerMove(char gameBoard[][3]) {
 	col = (choice > 5)? (col - 3): col;
 	
 	if (gameBoard[row][col] != ' ') {
-		printf("retrying...\n");
 		goto ENTER;
 	}
+	printf("The computer has entered: %d\n", choice + 1);
 	gameBoard[row][col] = 'o';
 }
