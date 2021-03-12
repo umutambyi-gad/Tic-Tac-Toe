@@ -24,7 +24,7 @@ void displayBoard(char board[][3]) {
 }
 
 void displayInstructions() {
-    printf("Pick a number from 1 to 9 to fill the cell in the board as below and play\n\n");
+    printf("Pick a number from 1 to 9 to fill the row in the board as below and play\n\n");
     printf("\t\t\t  1  |  2  |  3  \n");
     printf("\t\t\t----------------\n");
     printf("\t\t\t  4  |  5  |  6  \n");
@@ -80,41 +80,41 @@ void wait(int seconds) {
 
 
 bool checkRows(char board[][3]) {
-	int cell;
-	bool endPlay = false;
-	for (cell = 0; cell < 3; cell++) {
-		if (board[cell][0] == board[cell][1] && board[cell][1] == board[cell][2]
-			&& board[cell][0] != ' ') {
-			if (board[cell][0] == 'x') {
+	int row;
+	bool end = false;
+	for (row = 0; row < 3; row++) {
+		if (board[row][0] == board[row][1] && board[row][1] == board[row][2]
+			&& board[row][0] != ' ') {
+			if (board[row][0] == 'x') {
 				displayStatus(WIN);
 			} else {
 				displayStatus(LOST);
 			}
-			endPlay = true;
+			end = true;
 		}
 	}
-	return endPlay;
+	return end;
 }
 
 bool checkCols(char board[][3]) {
-	int cell;
-	bool endPlay = false;
-	for (cell = 0; cell < 3; cell++) {
-		if (board[0][cell] == board[1][cell] && board[1][cell] == board[2][cell]
-			&& board[0][cell] != ' ') {
-			if (board[0][cell] == 'x') {
+	int row;
+	bool end = false;
+	for (row = 0; row < 3; row++) {
+		if (board[0][row] == board[1][row] && board[1][row] == board[2][row]
+			&& board[0][row] != ' ') {
+			if (board[0][row] == 'x') {
 				displayStatus(WIN);
 			} else {
 				displayStatus(LOST);
 			}
-			endPlay = true;
+			end = true;
 		}
 	}
-	return endPlay;
+	return end;
 }
 
 bool checkDiags(char board[][3]) {
-	bool endPlay = false;
+	bool end = false;
 	if (board[0][0] == board[1][1] && 
         board[1][1] == board[2][2] &&  
         board[0][0] != ' ') {
@@ -123,7 +123,7 @@ bool checkDiags(char board[][3]) {
 		} else {
 			displayStatus(LOST);
 		}
-		endPlay = true;
+		end = true;
 	}
     if (board[0][2] == board[1][1] && 
         board[1][1] == board[2][0] && 
@@ -133,14 +133,14 @@ bool checkDiags(char board[][3]) {
 		} else {
 			displayStatus(LOST);
 		}
-		endPlay = true;
+		end = true;
     }
-    return endPlay;
+    return end;
 }
 
 bool gameOver(char board[][3]) {
 	int rows, cols, count = 0;
-	bool endPlay = false;
+	bool end = false;
 	for (rows = 0; rows < 3; rows++) {
 		for (cols = 0; cols < 3; cols++) {
 			if (board[rows][cols] != ' ') count++;
@@ -148,12 +148,12 @@ bool gameOver(char board[][3]) {
 	}
 	if (count == 9){
 		displayStatus(TIE);
-		endPlay = true;
+		end = true;
 	}
-	else if (checkRows(board) == true) endPlay = true;
-	else if (checkCols(board) == true) endPlay = true;
-	else if (checkDiags(board) == true) endPlay = true;
-	return endPlay;
+	else if (checkRows(board) == true) end = true;
+	else if (checkCols(board) == true) end = true;
+	else if (checkDiags(board) == true) end = true;
+	return end;
 }
 
 void humanMove(char board[][3]) {
@@ -175,7 +175,7 @@ void humanMove(char board[][3]) {
 	col = (choice > 5)? (col - 3): col;
 
 	if (board[row][col] != ' ') {
-		printf("\ncell has been occupied try another number\n");
+		printf("\nrow has been occupied try another number\n");
 		goto ENTER;
 	}
 	board[row][col] = 'x';
