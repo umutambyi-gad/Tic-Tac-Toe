@@ -230,11 +230,19 @@ void play() {
 		{' ', ' ', ' '}
 	};
     do {
-    	humanMove(board);
-    	displayBoard(board);
-    	wait(1);
-    	computerMove(board);
-    	wait(1);
-    	displayBoard(board);
+    	if (gameOver(board) == false) {
+    		humanMove(board);
+    		displayBoard(board);
+    		wait(1);
+    	} else {
+    		break;
+    	}
+    	if (gameOver(board) == false) {
+    		computerMove(board);
+    		wait(1);
+    		displayBoard(board);
+    	} else {
+    		break;
+    	}
     } while(gameOver(board) == false);
 }
