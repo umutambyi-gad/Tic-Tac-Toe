@@ -15,26 +15,6 @@
 #endif
 
 
-void wait(int seconds);
-void displayStatus(int status);
-void displayInstructions();
-void displayBoard(char board[][3]);
-bool checkRows(char board[][3]);
-bool checkCols(char board[][3]);
-bool checkDiags(char board[][3]);
-bool gameOver(char board[][3]);
-void humanMove(char board[][3]);
-void computerMove(char board[][3]);
-void play();
-
-int main() {
-	clrscr();
-    displayStatus(START);
-    displayInstructions();
-    play();
-    return 0;
-}
-
 void displayBoard(char board[][3]) {
     printf("\n\n\t\t  %c  |  %c  |  %c  \n", board[0][0], board[0][1], board[0][2]);
     printf("\t\t-----------------\n");
@@ -98,23 +78,6 @@ void wait(int seconds) {
     #endif
 }
 
-bool gameOver(char board[][3]) {
-	int rows, cols, count = 0;
-	bool endPlay = false;
-	for (rows = 0; rows < 3; rows++) {
-		for (cols = 0; cols < 3; cols++) {
-			if (board[rows][cols] != ' ') count++;
-		}
-	}
-	if (count == 9){
-		displayStatus(TIE);
-		endPlay = true;
-	}
-	else if (checkRows(board) == true) endPlay = true;
-	else if (checkCols(board) == true) endPlay = true;
-	else if (checkDiags(board) == true) endPlay = true;
-	return endPlay;
-}
 
 bool checkRows(char board[][3]) {
 	int cell;
@@ -173,6 +136,24 @@ bool checkDiags(char board[][3]) {
 		endPlay = true;
     }
     return endPlay;
+}
+
+bool gameOver(char board[][3]) {
+	int rows, cols, count = 0;
+	bool endPlay = false;
+	for (rows = 0; rows < 3; rows++) {
+		for (cols = 0; cols < 3; cols++) {
+			if (board[rows][cols] != ' ') count++;
+		}
+	}
+	if (count == 9){
+		displayStatus(TIE);
+		endPlay = true;
+	}
+	else if (checkRows(board) == true) endPlay = true;
+	else if (checkCols(board) == true) endPlay = true;
+	else if (checkDiags(board) == true) endPlay = true;
+	return endPlay;
 }
 
 void humanMove(char board[][3]) {
@@ -245,4 +226,12 @@ void play() {
     		break;
     	}
     } while(gameOver(board) == false);
+}
+
+int main() {
+	clrscr();
+    displayStatus(START);
+    displayInstructions();
+    play();
+    return 0;
 }
