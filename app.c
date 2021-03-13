@@ -25,13 +25,13 @@ void displayBoard(char board[][3]) {
 }
 
 void displayInstructions() {
+	int rows, cell;
     printf("Pick a number from 1 to 9 to fill the row in the board as below and play\n\n");
-    printf("\t\t\t  1  |  2  |  3  \n");
-    printf("\t\t\t----------------\n");
-    printf("\t\t\t  4  |  5  |  6  \n");
-    printf("\t\t\t----------------\n");
-    printf("\t\t\t  7  |  8  |  9  \n\n");
-    printf("--------------        -------------------        -----------------\n\n");
+    for (rows = 0, cell = 1; rows < 3, cell < 9; rows++, cell += 3) {
+    	printf("\t\t\t  %d  |  %d  |  %d  \n", cell, cell+1, cell+2);
+    	if (!(rows == 2)) printf("\t\t\t----------------\n");
+    }
+    printf("\n--------------        -------------------        -----------------\n\n");
 }
 
 void displayStatus(int status) {
