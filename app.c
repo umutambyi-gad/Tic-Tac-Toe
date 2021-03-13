@@ -17,11 +17,11 @@
 
 
 void displayBoard(char board[][3]) {
-    printf("\n\n\t\t  %c  |  %c  |  %c  \n", board[0][0], board[0][1], board[0][2]);
-    printf("\t\t-----------------\n");
-    printf("\t\t  %c  |  %c  |  %c  \n", board[1][0], board[1][1], board[1][2]);
-    printf("\t\t-----------------\n");
-    printf("\t\t  %c  |  %c  |  %c  \n\n", board[2][0], board[2][1], board[2][2]);
+	int rows;
+	for (rows = 0; rows < 3; rows++) {
+		printf("\t\t  %c  |  %c  |  %c  \n", board[rows][0], board[rows][1], board[rows][2]);
+		if (!(rows == 2)) printf("\t\t-----------------\n");
+	}
 }
 
 void displayInstructions() {
@@ -234,5 +234,5 @@ int main() {
     displayStatus(START);
     displayInstructions();
     play();
-    return 0;
+	return 0;
 }
