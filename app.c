@@ -7,6 +7,8 @@
 #define TIE 1
 #define WIN 2
 
+#define LENGTH 3
+
 #if defined(_WIN32) || defined(_WIN64)
     #define clrscr() system("cls");
 	#include <windows.h>
@@ -16,20 +18,20 @@
 #endif
 
 
-void displayBoard(char board[][3]) {
+void displayBoard(char board[][LENGTH]) {
 	int rows;
-	for (rows = 0; rows < 3; rows++) {
+	for (rows = 0; rows < LENGTH; rows++) {
 		printf("\t\t  %c  |  %c  |  %c  \n", board[rows][0], board[rows][1], board[rows][2]);
-		if (!(rows == 2)) printf("\t\t-----------------\n");
+		if (!(rows == LENGTH - 1)) printf("\t\t-----------------\n");
 	}
 }
 
 void displayInstructions() {
 	int rows, cell;
     printf("Pick a number from 1 to 9 to fill the row in the board as below and play\n\n");
-    for (rows = 0, cell = 1; rows < 3, cell < 9; rows++, cell += 3) {
+    for (rows = 0, cell = 1; rows < LENGTH, cell < LENGTH * LENGTH; rows++, cell += 3) {
     	printf("\t\t\t  %d  |  %d  |  %d  \n", cell, cell+1, cell+2);
-    	if (!(rows == 2)) printf("\t\t\t----------------\n");
+    	if (!(rows == LENGTH - 1)) printf("\t\t\t----------------\n");
     }
     printf("\n--------------        -------------------        -----------------\n\n");
 }
@@ -79,10 +81,10 @@ void wait(int seconds) {
 }
 
 
-bool checkRows(char board[][3]) {
+bool checkRows(char board[][LENGTH]) {
 	int row;
 	bool end = false;
-	for (row = 0; row < 3; row++) {
+	for (row = 0; row < LENGTH; row++) {
 		if (board[row][0] == board[row][1] && board[row][1] == board[row][2]
 			&& board[row][0] != ' ') {
 			if (board[row][0] == 'x') {
@@ -96,10 +98,10 @@ bool checkRows(char board[][3]) {
 	return end;
 }
 
-bool checkCols(char board[][3]) {
+bool checkCols(char board[][LENGTH]) {
 	int row;
 	bool end = false;
-	for (row = 0; row < 3; row++) {
+	for (row = 0; row < LENGTH; row++) {
 		if (board[0][row] == board[1][row] && board[1][row] == board[2][row]
 			&& board[0][row] != ' ') {
 			if (board[0][row] == 'x') {
@@ -113,7 +115,7 @@ bool checkCols(char board[][3]) {
 	return end;
 }
 
-bool checkDiags(char board[][3]) {
+bool checkDiags(char board[][LENGTH]) {
 	bool end = false;
 	if (board[0][0] == board[1][1] && 
         board[1][1] == board[2][2] &&  
@@ -138,11 +140,11 @@ bool checkDiags(char board[][3]) {
     return end;
 }
 
-bool gameOver(char board[][3]) {
+bool gameOver(char board[][LENGTH]) {
 	int rows, cols, count = 0;
 	bool end = false;
-	for (rows = 0; rows < 3; rows++) {
-		for (cols = 0; cols < 3; cols++) {
+	for (rows = 0; rows < LENGTH; rows++) {
+		for (cols = 0; cols < LENGTH; cols++) {
 			if (board[rows][cols] != ' ') count++;
 		}
 	}
@@ -156,7 +158,7 @@ bool gameOver(char board[][3]) {
 	return end;
 }
 
-void humanMove(char board[][3]) {
+void humanMove(char board[][LENGTH]) {
 	int choice, row, col;
 	ENTER:
 		printf("Enter number to fill play: ");
@@ -168,11 +170,11 @@ void humanMove(char board[][3]) {
 	}
 	
 	choice = choice - 1;
-	row = (choice > 2)? 1: 0;
-	row = (choice > 5)? 2: row;
+	row = (choice > LENGTH - 1)? LENGTH - 2: 0;
+	row = (choice > LENGTH + 2)? LENGTH - 1: row;
 
-	col = (choice > 2)? choice - 3: choice;
-	col = (choice > 5)? (col - 3): col;
+	col = (choice > LENGTH - 1)? choice - LENGTH: choice;
+	col = (choice > LENGTH + 2)? (col - LENGTH): col;
 
 	if (board[row][col] != ' ') {
 		printf("\nrow has been occupied try another number\n");
@@ -181,7 +183,7 @@ void humanMove(char board[][3]) {
 	board[row][col] = 'x';
 }
 
-void computerMove(char board[][3]) {
+void computerMove(char board[][LENGTH]) {
 	srand(time(NULL));
 	
 	int choice, row, col;
@@ -190,11 +192,11 @@ void computerMove(char board[][3]) {
 		choice = (choice == 0)? 1 : choice;
 	
 	choice = choice - 1;
-	row = (choice > 2)? 1: 0;
-	row = (choice > 5)? 2: row;
+	row = (choice > LENGTH - 1)? LENGTH - 2: 0;
+	row = (choice > LENGTH + 2)? LENGTH - 1: row;
 
-	col = (choice > 2)? choice - 3: choice;
-	col = (choice > 5)? (col - 3): col;
+	col = (choice > LENGTH - 1)? choice - LENGTH: choice;
+	col = (choice > LENGTH + 2)? col - LENGTH: col;
 	
 	if (board[row][col] != ' ') {
 		goto ENTER;
@@ -205,7 +207,7 @@ void computerMove(char board[][3]) {
 
 
 void play() {
-	char board[][3] = {
+	char board[][LENGTH] = {
 		{' ', ' ', ' '},
 		{' ', ' ', ' '},
 		{' ', ' ', ' '}
