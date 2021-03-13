@@ -147,13 +147,13 @@ bool gameOver(char board[][3]) {
 			if (board[rows][cols] != ' ') count++;
 		}
 	}
-	if (count == 9){
+	if (checkRows(board) == true) end = true;
+	else if (checkCols(board) == true) end = true;
+	else if (checkDiags(board) == true) end = true;
+	else if (count == 9) {
 		displayStatus(TIE);
 		end = true;
 	}
-	else if (checkRows(board) == true) end = true;
-	else if (checkCols(board) == true) end = true;
-	else if (checkDiags(board) == true) end = true;
 	return end;
 }
 
