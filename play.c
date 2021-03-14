@@ -1,13 +1,16 @@
 #include <stdbool.h>
 
+
 #define LENGTH 3
 #define START 0
 
+
 #if defined(_WIN32) || defined(_WIN64)
-    #define clrscr() system("cls");
+  #define clrscr() system("cls");
 #else
-    #define clrscr() system("clear");
+  #define clrscr() system("clear");
 #endif
+
 
 extern void displayStatus();
 extern void displayInstructions();
@@ -20,10 +23,12 @@ extern bool gameOver();
 
 void play();
 
+
 int main() {
     play();
 	return 0;
 }
+
 
 void play() {
 	char board[][LENGTH] = {

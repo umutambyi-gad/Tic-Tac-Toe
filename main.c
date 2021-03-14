@@ -2,13 +2,15 @@
 #include <stdbool.h>
 #include <time.h>
 #include <string.h>
+#include <stdlib.h>
+
 
 #define START 0
 #define LOST -1
 #define TIE 1
 #define WIN 2
-
 #define LENGTH 3
+
 
 #if defined(_WIN32) || defined(_WIN64)
 	#include <windows.h>
@@ -27,6 +29,7 @@ void displayBoard(char board[][LENGTH]) {
 	printf("\n");
 }
 
+
 void displayInstructions() {
 	int rows, cell;
 	char move;
@@ -41,6 +44,7 @@ void displayInstructions() {
     }
     printf("\n--------------        -------------------        -----------------\n\n");
 }
+
 
 void displayStatus(int status) {
     if (status == 0) {
@@ -78,6 +82,7 @@ void displayStatus(int status) {
     }
 }
 
+
 void wait(int seconds) {
     #if defined(_WIN32) || defined(_WIN64)
         Sleep(1000 * seconds);
@@ -104,6 +109,7 @@ bool checkRows(char board[][LENGTH]) {
 	return end;
 }
 
+
 bool checkCols(char board[][LENGTH]) {
 	int row;
 	bool end = false;
@@ -120,6 +126,7 @@ bool checkCols(char board[][LENGTH]) {
 	}
 	return end;
 }
+
 
 bool checkDiags(char board[][LENGTH]) {
 	bool end = false;
@@ -146,6 +153,7 @@ bool checkDiags(char board[][LENGTH]) {
     return end;
 }
 
+
 bool gameOver(char board[][LENGTH]) {
 	int rows, cols, count = 0;
 	bool end = false;
@@ -163,6 +171,7 @@ bool gameOver(char board[][LENGTH]) {
 	}
 	return end;
 }
+
 
 void humanMove(char board[][LENGTH]) {
 	int choice, row, col;
@@ -188,6 +197,7 @@ void humanMove(char board[][LENGTH]) {
 	}
 	board[row][col] = 'x';
 }
+
 
 void computerMove(char board[][LENGTH]) {
 	srand(time(NULL));
