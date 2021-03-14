@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <time.h>
+#include <string.h>
 
 #define START 0
 #define LOST -1
@@ -18,6 +19,10 @@
 #endif
 
 
+static char human_move = 'x';
+static char computer_move = 'o';
+
+
 void displayBoard(char board[][LENGTH]) {
 	int rows;
 	for (rows = 0; rows < LENGTH; rows++) {
@@ -28,9 +33,10 @@ void displayBoard(char board[][LENGTH]) {
 
 void displayInstructions() {
 	int rows, cell;
+	char move;
     printf("Pick a number from 1 to 9 to fill the row in the board as below and play\n\n");
     for (rows = 0, cell = 1; rows < LENGTH, cell < LENGTH * LENGTH; rows++, cell += 3) {
-    	printf("\t\t\t  %d  |  %d  |  %d  \n", cell, cell+1, cell+2);
+    	printf("\t\t\t  %d  |  %d  |  %d  \n", cell, cell + 1, cell + 2);
     	if (!(rows == LENGTH - 1)) printf("\t\t\t----------------\n");
     }
     printf("\n--------------        -------------------        -----------------\n\n");
@@ -87,7 +93,7 @@ bool checkRows(char board[][LENGTH]) {
 	for (row = 0; row < LENGTH; row++) {
 		if (board[row][0] == board[row][1] && board[row][1] == board[row][2]
 			&& board[row][0] != ' ') {
-			if (board[row][0] == 'x') {
+			if (board[row][0] == human_move) {
 				displayStatus(WIN);
 			} else {
 				displayStatus(LOST);
@@ -104,7 +110,7 @@ bool checkCols(char board[][LENGTH]) {
 	for (row = 0; row < LENGTH; row++) {
 		if (board[0][row] == board[1][row] && board[1][row] == board[2][row]
 			&& board[0][row] != ' ') {
-			if (board[0][row] == 'x') {
+			if (board[0][row] == human_move) {
 				displayStatus(WIN);
 			} else {
 				displayStatus(LOST);
@@ -120,7 +126,7 @@ bool checkDiags(char board[][LENGTH]) {
 	if (board[0][0] == board[1][1] && 
         board[1][1] == board[2][2] &&  
         board[0][0] != ' ') {
-		if (board[0][0] == 'x') {
+		if (board[0][0] == human_move) {
 			displayStatus(WIN);
 		} else {
 			displayStatus(LOST);
@@ -130,7 +136,7 @@ bool checkDiags(char board[][LENGTH]) {
     if (board[0][2] == board[1][1] && 
         board[1][1] == board[2][0] && 
         board[0][2] != ' ') {
-    	if (board[0][2] == 'x') {
+    	if (board[0][2] == human_move) {
 			displayStatus(WIN);
 		} else {
 			displayStatus(LOST);
@@ -161,7 +167,7 @@ bool gameOver(char board[][LENGTH]) {
 void humanMove(char board[][LENGTH]) {
 	int choice, row, col;
 	ENTER:
-		printf("Enter number to fill play: ");
+		printf("Enter number to fill board and play: ");
 		scanf("%d", &choice);
 
 	if (choice < 1 || choice > 9) {
@@ -180,7 +186,7 @@ void humanMove(char board[][LENGTH]) {
 		printf("\nrow has been occupied try another number\n");
 		goto ENTER;
 	}
-	board[row][col] = 'x';
+	board[row][col] = human_move;
 }
 
 void computerMove(char board[][LENGTH]) {
@@ -202,7 +208,7 @@ void computerMove(char board[][LENGTH]) {
 		goto ENTER;
 	}
 	printf("The computer has entered: %d\n", choice + 1);
-	board[row][col] = 'o';
+	board[row][col] = computer_move;
 }
 
 
