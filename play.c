@@ -1,7 +1,6 @@
 #include <stdbool.h>
 
 
-
 #define LENGTH 3 // Length of columns or rows of the tic tac toe board
 #define START 0
 
