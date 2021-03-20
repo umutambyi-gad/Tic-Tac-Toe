@@ -1,10 +1,21 @@
 # Tic-Tac-Toe
 ![Tic Tac Toe Live Demo](https://user-images.githubusercontent.com/65312850/111076565-1044ec00-84ed-11eb-8b1d-b65056d0dd4d.PNG)
 
-## About
+## Table of content
+<ul>
+  <li><b><a href="#description">Description</a></b></li>  
+  <li><b><a href="#live-demo">Live Demo</a></b></li>
+  <li><b><a href="#author">Author</a></b></li>
+  <li><b><a href="#acknowledgments">Acknowledgments</a></b></li>
+  <li><b><a href="#license">License</a></b></li>
+</ul>
+
+## Description
+
 In case of mastering basics of c I created Tic Tac Toe game is 3x3 grid which played by two players (person and computer) where person use 'x' as an identifier and computer uses 'o' so the first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner or when all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.
 
 ## Live Demo
+
 [**You can run code yourself here**](https://replit.com/@umutambyigad/Tic-TacToe#play.c) 👈
 
 ## Author
