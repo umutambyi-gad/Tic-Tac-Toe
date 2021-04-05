@@ -1,14 +1,6 @@
 # Tic-Tac-Toe
 ![Tic Tac Toe Live Demo](https://user-images.githubusercontent.com/65312850/111076565-1044ec00-84ed-11eb-8b1d-b65056d0dd4d.PNG)
 
-## Table of content
-<ul>
-  <li><b><a href="#description">Description</a></b></li>  
-  <li><b><a href="#live-demo">Live Demo</a></b></li>
-  <li><b><a href="#author">Author</a></b></li>
-  <li><b><a href="#acknowledgments">Acknowledgments</a></b></li>
-  <li><b><a href="#license">License</a></b></li>
-</ul>
 
 ## Description
 
