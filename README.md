@@ -11,6 +11,7 @@ In case of mastering basics of c I created Tic Tac Toe game is 3x3 grid which pl
 [**You can run code yourself here**](https://replit.com/@umutambyigad/Tic-TacToe#play.c) 👈
 
 ## Author
+**Gitlab** [@umutambyi-gad](https://gitlab.com/umutambyi-gad) <br>
 **Website:** [umutambyigad](https://umutambyigad.herokuapp.com) <br>
 **Stackoverflow:** [@umutambyi-gad](https://stackoverflow.com/users/13536893/umutambyi-gad) <br>
 **Twitter:** [@umutambyi_gad](https://twitter.com/umutambyi_gad) <br>
