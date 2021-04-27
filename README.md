@@ -23,4 +23,4 @@ In case of mastering basics of c I created Tic Tac Toe game is 3x3 grid which pl
 Glad to thank and say I was inspired by [Delice's project](https://github.com/DeliceLydia/Tic-Tac-Toe-Game)
 
 ## License
-This project is under the [MIT](https://github.com/umutambyi-gad/Tic-Tac-Toe/blob/master/LICENSE) license
+This project is under the [MIT](https://github.com/umutambyi-gad/Tic-Tac-Toe/blob/master/LICENSE) license.
